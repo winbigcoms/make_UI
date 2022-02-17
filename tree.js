@@ -52,8 +52,22 @@ class Branch {
     this.currentY = this.startY;
   }
 
+  drawLeaves(ctx) {
+    this.currntX += this.gapX;
+    this.currentY += this.gapY;
+
+    ctx.beginPath();
+
+    ctx.arc(this.startX, this.startY, 20, 0, Math.PI * 2, false);
+    ctx.fillStyle = "rgba(17, 255, 0, 0.01)";
+    ctx.fill();
+    ctx.closePath();
+  }
+
   draw(ctx) {
-    if (this.cntFrame === this.frame) return true;
+    if (this.cntFrame === this.frame) {
+      return true;
+    }
 
     ctx.beginPath();
 
@@ -77,6 +91,7 @@ class Branch {
     ctx.strokeStyle = this.color;
 
     ctx.stroke();
+
     ctx.closePath();
 
     this.cntFrame++;
@@ -134,6 +149,10 @@ class Tree {
 
       for (let j = 0; j < this.branches[i].length; j++) {
         pass = this.branches[i][j].draw(this.ctx);
+
+        if (i === this.branches.length - 1) {
+          this.branches[i][j].drawLeaves(this.ctx);
+        }
       }
 
       if (!pass) break;
