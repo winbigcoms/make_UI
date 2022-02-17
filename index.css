@@ -1,0 +1,510 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+body > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+body > div:nth-child(odd) {
+  background-color: #cfcfcf;
+}
+
+body h2 {
+  padding-top: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+/* 아코디언 */
+.accordion .accordion-menus {
+  background-color: #cfcfcf;
+  margin-top: 20px;
+  width: 250px;
+  padding: 0px 10px;
+}
+
+.accordion .accordion-menus .accordion-menu {
+  position: relative;
+}
+
+.accordion .accordion-menus .accordion-menu h3 {
+  padding: 10px 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.accordion .accordion-menus .accordion-menu .accordion-menu-title .check {
+  background-color: #333;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.accordion .accordion-menus .accordion-menu h3 .check::after {
+  content: "";
+  display: inline-block;
+  margin-bottom: 5px;
+  width: 0.48rem;
+  height: 0.56rem;
+  border: solid #fff;
+  border-width: 0 0.19rem 0.19rem 0;
+  transform: rotate(45deg);
+}
+
+.accordion .accordion-menus .accordion-menu .accordion-menu-title.on .check {
+  background-color: red;
+  transform: rotate(-180deg);
+}
+
+.accordion .accordion-menus .accordion-menu .accordion-menu-list {
+  margin: 5px 0px 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 0px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.accordion .accordion-menus .accordion-menu .accordion-menu-list li {
+  padding: 8px 0;
+  text-indent: 10px;
+  position: relative;
+}
+
+.accordion
+  .accordion-menus
+  .accordion-menu
+  .accordion-menu-list
+  li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 5%;
+  bottom: 0;
+  height: 1px;
+  width: 95%;
+  background-color: #ccc;
+}
+/* 도시락 버튼 */
+.dosirakBtn {
+  width: 70px;
+  height: 70px;
+  background-color: #ddd;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+
+.dosirakBtn span {
+  width: 26%;
+  height: 26%;
+  padding: 10px;
+  background-color: #000;
+}
+
+/* 브레드 스크럽 */
+.breadcrunb {
+  padding: 10px 0;
+}
+
+.breadcrunbList {
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+.breadcrunbList li {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+}
+
+.breadcrunbList li:not(:first-child) {
+  margin-left: 10px;
+}
+
+.breadcrunbList li:first-child {
+  border-left: 2px solid #666;
+  left: -1px;
+
+  background-color: #fff;
+}
+
+.breadcrunbList li:first-child::after,
+.breadcrunbList li:first-child::before {
+  left: 3px;
+  border-left: none;
+  background-color: #fff;
+}
+
+.breadcrunbList li::after,
+.breadcrunbList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 50%;
+  width: 100%;
+  background-color: #fff;
+  border-left: 2px solid #666;
+  border-right: 2px solid #666;
+  z-index: -2;
+}
+
+.breadcrunbList li::before {
+  top: -2px;
+  transform: skew(30deg);
+  border-top: 2px solid #666;
+}
+
+.breadcrunbList li::after {
+  bottom: -2px;
+  transform: skew(-30deg);
+  border-bottom: 2px solid #666;
+}
+
+.breadcrunbList li span {
+  display: inline-block;
+  position: relative;
+  line-height: 2.2;
+  padding: 0 20px;
+}
+
+.breadcrunbList li:last-child::after,
+.breadcrunbList li:last-child::before {
+  background-color: skyblue;
+}
+/* 커스텀 체크박스 */
+
+.checkBoxLabel {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #666;
+  position: relative;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkBoxLabelinput {
+  width: 1px;
+  height: 1px;
+}
+
+.checkBoxLabel span {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  position: absolute;
+  transition: all 0.3s;
+  border-radius: 3px;
+  left: 0;
+  top: 0;
+}
+
+.checkBoxLabel input:checked ~ span {
+  background-color: skyblue;
+}
+
+.checkBoxLabel input:checked ~ span::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: skyblue;
+  border-radius: 3px;
+  animation: checkAnimation 0.5s 0s ease-in-out 1 both;
+}
+@keyframes checkAnimation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+.checkBoxLabel input:checked ~ span:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 30%;
+  top: 45%;
+  margin-bottom: 5px;
+  width: 0.4rem;
+  height: 0.9rem;
+  border: solid #fff;
+  z-index: 2;
+  border-width: 0 0.19rem 0.19rem 0;
+  transform: rotate(45deg) translate(-50%, -50%);
+}
+/* 도너 메뉴 */
+
+.donerButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #666;
+  position: relative;
+}
+
+.donerButton.center span {
+  height: 2px;
+  border-radius: 1px;
+  background-color: #000;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+}
+.donerButton.right span {
+  height: 2px;
+  border-radius: 1px;
+  background-color: #000;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+}
+
+.donerButton.center span:nth-child(1) {
+  width: 80%;
+  top: 30%;
+  transform: translateX(-50%);
+}
+.donerButton.center span:nth-child(2) {
+  width: 60%;
+  top: 50%;
+  transform: translateX(-50%);
+}
+.donerButton.center span:nth-child(3) {
+  width: 40%;
+  top: 70%;
+  transform: translateX(-50%);
+}
+.donerButton.right span:nth-child(1) {
+  width: 80%;
+  top: 15%;
+}
+.donerButton.right span:nth-child(2) {
+  width: 65%;
+  top: 30%;
+}
+.donerButton.right span:nth-child(3) {
+  width: 50%;
+  top: 45%;
+}
+.donerButton.right span:nth-child(4) {
+  width: 35%;
+  top: 60%;
+}
+.donerButton.right span:nth-child(5) {
+  width: 20%;
+  top: 75%;
+}
+
+/* 로더 */
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid #000;
+}
+
+.loader span {
+  display: inline-block;
+  border-radius: 10px;
+  background-color: skyblue;
+  transform-origin: 20px 15px;
+  width: 10px;
+  height: 10px;
+  animation: rotateAnimation 1s ease-in-out 0s 3 both;
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 커스텀 라디오 */
+.customRadio .customRadioLabel {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.customRadio .customRadioLabel div input {
+  width: 1px;
+  height: 1px;
+  clip: 0, 0, 0, 0;
+}
+.customRadio .customRadioLabel div {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.customRadio .customRadioLabel div span {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  background-color: #fff;
+}
+
+.customRadio .customRadioLabel div input:checked ~ span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 8px;
+  background-color: rgba(253, 49, 226, 0.63);
+}
+
+/* 토글 */
+
+.toggleBox {
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  align-items: center;
+}
+.toggleBox .toggleLabel {
+  width: 80px;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
+}
+.toggleBox .toggleLabel input {
+  width: 1px;
+  height: 1px;
+  clip: 0, 0, 0, 0;
+}
+
+.toggleBox .toggleLabel span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: gray;
+}
+
+.toggleBox .toggleLabel span::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+
+.toggleBox .toggleLabel input:checked ~ span {
+  background-color: rgb(121, 252, 143);
+}
+
+.toggleBox .toggleLabel input:checked ~ span::after {
+  left: 42px;
+}
+
+/* 카드 뒤집기 */
+
+.openCard {
+  padding: 20px;
+  position: relative;
+}
+
+.card {
+  width: 150px;
+  height: 200px;
+  background-color: #fff;
+  border: 1px solid silver;
+  transition: 1s all;
+}
+
+.openCard .cardFront {
+  position: absolute;
+  transform: rotateY(0deg);
+}
+
+.openCard .cardBack {
+  transform: rotateY(-180deg);
+}
+
+.openCard:hover .cardFront {
+  transform: rotateY(180deg);
+}
+
+.openCard:hover .cardBack {
+  transform: rotateY(0deg);
+}
+
+/* 책 넘기기 */
+
+.bookPage {
+  height: 300px;
+}
+
+.book {
+  height: 250px;
+  width: 180px;
+  margin: auto;
+}
+
+.page,
+.pages {
+  width: 100%;
+  height: 100%;
+}
+
+.pages {
+  position: relative;
+}
+
+.page {
+  transform-origin: center left;
+  position: absolute;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transform-style: preserve-3d;
+}
+
+.page:not(:last-child) {
+  z-index: 2;
+}
