@@ -42,7 +42,7 @@ class Branch {
     this.color = "#000000";
     this.lineWidth = lineWidth;
 
-    this.frame = 10;
+    this.frame = 20;
     this.cntFrame = 0;
 
     this.gapX = (this.endX - this.startX) / this.frame;
