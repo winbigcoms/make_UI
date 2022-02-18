@@ -421,6 +421,7 @@ button {
   height: 40px;
   border-radius: 20px;
   background-color: gray;
+  transition: background-color 0.5s;
 }
 
 .toggleBox .toggleLabel span::after {

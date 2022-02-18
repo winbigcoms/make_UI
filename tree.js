@@ -33,13 +33,19 @@ window.onload = () => {
   new Init();
 };
 
+const leavesColors = [
+  "rgba(65, 95, 255, 0.01)",
+  "rgba(255, 0, 0, 0.01)",
+  "rgba(158, 255, 0, 0.01)",
+];
+
 class Branch {
-  constructor(startX, startY, endX, endY, lineWidth) {
+  constructor(startX, startY, endX, endY, lineWidth, leavesColor) {
     this.startX = startX;
     this.startY = startY;
     this.endX = endX;
     this.endY = endY;
-    this.color = "#000000";
+    this.color = leavesColors[leavesColor];
     this.lineWidth = lineWidth;
 
     this.frame = 20;
@@ -55,16 +61,17 @@ class Branch {
   drawLeaves(ctx) {
     this.currntX += this.gapX;
     this.currentY += this.gapY;
-
+    ctx.globalCompositeOperation = "destination-over";
     ctx.beginPath();
 
     ctx.arc(this.startX, this.startY, 20, 0, Math.PI * 2, false);
-    ctx.fillStyle = "rgba(17, 255, 0, 0.01)";
+    ctx.fillStyle = this.color;
     ctx.fill();
     ctx.closePath();
   }
 
   draw(ctx) {
+    ctx.globalCompositeOperation = "source-over";
     if (this.cntFrame === this.frame) {
       return true;
     }
@@ -87,8 +94,8 @@ class Branch {
       ctx.lineWidth = this.lineWidth;
     }
 
-    ctx.fillStyle = this.color;
-    ctx.strokeStyle = this.color;
+    ctx.fillStyle = "#fff";
+    ctx.strokeStyle = "#fff";
 
     ctx.stroke();
 
@@ -107,7 +114,7 @@ class Tree {
     this.posY = posY;
     this.branches = [];
     this.depth = 11;
-
+    this.leavesColor = Math.floor(Math.random() * 2);
     this.cntDepth = 0;
     this.animation = null;
 
@@ -132,7 +139,14 @@ class Tree {
     const endY = startY + this.sin(angle) * len * (this.depth - depth);
 
     this.branches[depth].push(
-      new Branch(startX, startY, endX, endY, this.depth - depth)
+      new Branch(
+        startX,
+        startY,
+        endX,
+        endY,
+        this.depth - depth,
+        this.leavesColor
+      )
     );
 
     this.createBranch(endX, endY, angle - this.random(15, 23), depth + 1);
