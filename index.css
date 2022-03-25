@@ -509,3 +509,38 @@ button {
 .page:not(:last-child) {
   z-index: 2;
 }
+
+.searchBar {
+  padding: 20px 0px;
+}
+
+.searchBar label {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.searchBar label span {
+  margin-right: 5px;
+}
+
+.searchBar input {
+  flex: 1;
+  border: none;
+  outline: none;
+}
+
+.star span {
+  color: yellow;
+  -webkit-text-stroke: #000;
+  -webkit-text-stroke-width: 1px;
+  font-size: 45px;
+}
+
+.star .half {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to left, red 50%, transparent 50%);
+}
